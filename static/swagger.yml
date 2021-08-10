@@ -1,0 +1,156 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Swagger RestFul API
+schemes: [http]
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /books:
+    get:
+      operationId: get_books
+      tags:
+        - All books
+      summary: All books
+      responses:
+        200:
+          description: Success
+  /books/id/{id}:
+    get:
+      operationId: get_by_id
+      tags:
+        - Get book by id
+      summary: Get book by id
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Success
+  /books/authors/{authors}:
+    get:
+      operationId: get_book_by_authors
+      tags:
+        - Get books by author
+      summary: Get books by author
+      parameters:
+        - name: authors
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Success
+  /books/title/{title}:
+    get:
+      operationId: get_book_by_title
+      tags:
+        - Get books by title
+      summary: Get books by title
+      parameters:
+        - name: title
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Success
+  /books/category/{categories}:
+    get:
+      operationId: get_book_by_cateogry
+      tags:
+        - Get books by category
+      summary: Get books by cateogry
+      parameters:
+        - name: categories
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Success
+  /books/addbook:
+    post:
+      operationId: add_new_book
+      tags:
+        - Add the new book
+      summary: Add the new book
+      parameters:
+        - name: body
+          in: body
+          description: Change the record by id
+          required: True
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              authors:
+                type: string
+              publisher:
+                type: string
+              description:
+                type: string
+              category:
+                type: string
+              price:
+                type: float
+      responses:
+        200:
+          description: Success
+
+  /books/id:
+    put:
+      operationId: update_book
+      tags:
+        - Change the record
+      summary: Change the record
+      parameters:
+        - name: body
+          in: body
+          description: Change the record
+          required: True
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              authors:
+                type: string
+              publisher:
+                type: string
+              description:
+                type: string
+              categories:
+                type: string
+              price:
+                type: float
+      responses:
+        200:
+          description: Successfully changed the record
+        503:
+          description: Incorrect id
+    /books/id/{id}:
+    delete:
+      operationId: get_by_id
+      description: Delete record
+      tags:
+        - Delete the book by id
+      summary: Delete book
+      parameters:
+        - name: id
+          in: path
+          description: Id of the book
+          type: string
+          required: true
+      responses:
+        200:
+          description: Successfully deleted the record
+        503:
+          description: Incorrect id
